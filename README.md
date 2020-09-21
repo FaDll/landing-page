@@ -11,7 +11,7 @@ Landing page
 
 # Installing
 <pre>
-Clone the current repo to your htdocs (in case you are using xamp server).
+Clone the current repo to your htdocs folder (in case you are using xamp server).
 </pre>
 # Getting Started
 Get started: [Home Page](http://localhost/landing-page/index.html).
