@@ -21,7 +21,14 @@
 let sectionsIds='';
 let UnOrderedList=[];
 let anchors=[];
+sectionsIds = document.getElementsByTagName("section");
+const UnOrderedListID = document.querySelector('#navbar__list');//parent
 let current='';
+const options={
+    root:null,
+    threshold: 0.75
+};
+let observer=new IntersectionObserver(onEntry,options);
 
 /**
  * End Global Variables
@@ -29,18 +36,13 @@ let current='';
  * 
 */
 
-function isInViewport(e)
+function isInViewport()
 {
-    let section = e.getBoundingClientRect();//returns the size of the element relative to the viewport
-    return (
-        section.top >= 0 &&
-        section.left >= 0 &&
-        section.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        section.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+    for(section of sectionsIds)
+    {
+        observer.observe(section);
+    }
 };
-
-
 
 /**
  * End Helper Functions
@@ -49,8 +51,6 @@ function isInViewport(e)
 */
 
 // build the nav
-sectionsIds = document.getElementsByTagName("section");
-const UnOrderedListID = document.querySelector('#navbar__list');//parent
 
 function BuildMenu()
 {
@@ -69,40 +69,38 @@ for (let i=0; i<sectionsIds.length; i++)
     }
 }
 
-function AddActiveSection()
-{
-    for(section of sectionsIds)
-    {
-        if (isInViewport(section))
-        {
-            current=`#${section.id}`;//to get the current sectionID and compare it with href attribute and link the section in viewport and the href tab.
-            section.classList.add("your-active-class");
+function onEntry(sections) {
+    sections.forEach((section) => { 
+    
+        if(section.isIntersecting)//checks if the section is in the viewport and returns true
+        {   
+            current=`#${section.target.id}`;//to get the current sectionID and compare it with href attribute and link the section in viewport and the href tab.
+            section.target.classList.add('your-active-class');
             for(anchor of anchors)
-            {    
+            {
                 if(current===anchor.getAttribute('href'))
                 {
                     anchor.classList.add("Link_backGround");
-                    
                 }
                 else
                 {
                     anchor.classList.remove("Link_backGround");
                 }
-            }
+            }   
+            
         }
         else
         {
-            section.classList.remove("your-active-class");
-
+            section.target.classList.remove('your-active-class');
+            
         }
-    }
+    });
 }
-
-
+  
 // Add class 'active' to section when near top of viewport\
 function ViewActiveSection()
 {
-document.addEventListener('scroll',AddActiveSection);
+document.addEventListener('scroll',isInViewport);
 }
 // Scroll to anchor ID using scrollTO event
 function ScrollTo()
@@ -115,7 +113,6 @@ function ScrollTo()
             document.querySelector(anchor.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             })
-            
         })
     }
 }
