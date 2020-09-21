@@ -5,5 +5,5 @@ Landing page
 <pre>
 1. clone the repo file to \xamp\htdocs.
 2. start the Apache server.
-(http://localhost/landing-page/index.html).
 </pre>
+[Home Page](http://localhost/landing-page/index.html).
