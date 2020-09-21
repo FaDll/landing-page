@@ -3,8 +3,13 @@ Landing page
 
 # Prerequisites
 <pre>
-1. clone the repo file to \xamp\htdocs.
-2. start the Apache server.
-Get started: [Home Page](http://localhost/landing-page/index.html).
+1. install xamp/wamp on your local machine.
+2. start the Apache/wamp server. 
 </pre>
+
+# Installing
+<pre>
+1. clonse the current repo to your htdocs (in case you are using xamp server).
+</pre>
+Get started: [Home Page](http://localhost/landing-page/index.html).
 
