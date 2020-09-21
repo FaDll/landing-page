@@ -1,3 +1,6 @@
+# Project Title
+Landing page
+
 # Prerequisites
 1. clone the repo file to \xamp\htdocs.
 2. start the Apache server.
