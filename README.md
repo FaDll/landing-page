@@ -1,6 +1,6 @@
 # Project Title
 <pre>
-Landing page
+Landing page with dynamic nav bar.
 </pre>
 
 # Prerequisites
